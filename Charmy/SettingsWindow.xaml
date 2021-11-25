@@ -1,12 +1,12 @@
-﻿<Window x:Class="Charmy.MainWindow"
+﻿<Window x:Class="Charmy.SettingsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Charmy"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        d:DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}"
+        Title="Settings" MinHeight="500" MinWidth="320">
     <Grid>
-        
     </Grid>
 </Window>

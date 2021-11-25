@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.Win32;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows;
 
 namespace Charmy
@@ -13,5 +11,28 @@ namespace Charmy
     /// </summary>
     public partial class App : Application
     {
+        public readonly static SettingsViewModel SViewModel = new SettingsViewModel();
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            Assembly curAssembly = Assembly.GetExecutingAssembly();
+
+            if (key.GetValue(curAssembly.GetName().Name) == null)
+            {
+                key.SetValue(curAssembly.GetName().Name, curAssembly.Location);
+            }
+
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                BeginTracking();
+            }).Start();
+
+            base.OnStartup(e);
+        }
+
+        [DllImport("HotCorners")]
+        private static extern int BeginTracking();
     }
 }

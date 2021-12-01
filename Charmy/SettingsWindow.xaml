@@ -8,5 +8,6 @@
         d:DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}"
         Title="Settings" MinHeight="500" MinWidth="320">
     <Grid>
+        <TextBlock Text="Not ready yet!" />
     </Grid>
 </Window>

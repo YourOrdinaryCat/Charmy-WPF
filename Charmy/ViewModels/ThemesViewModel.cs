@@ -13,26 +13,59 @@ namespace Charmy.ViewModels
         private const string RegistryKeyPath = @"Software\Microsoft\Windows\CurrentVersion\Themes\Personalize";
         private const string RegistryValueName = "AppsUseLightTheme";
 
-        private WindowsThemes _currentTheme;
+        private WindowsThemes _currentSystemTheme;
         /// <summary>
-        /// Gets or sets the current theme.
+        /// Gets or sets the current system wide theme.
         /// </summary>
-        public WindowsThemes CurrentTheme
+        public WindowsThemes CurrentSystemTheme
         {
-            get { return _currentTheme; }
+            get { return _currentSystemTheme; }
             set
             {
-                if (Set(ref _currentTheme, value))
+                if (Set(ref _currentSystemTheme, value))
                 {
-                    CurrentThemeChanged?.Invoke(this, value);
+                    var args = new ThemeChangedEventArgs(value, CurrentAppTheme);
+                    OnCurrentThemeChanged(args);
                 }
             }
+        }
+
+        private AppThemes _currentAppTheme;
+        /// <summary>
+        /// Gets or sets the current custom app theme.
+        /// </summary>
+        public AppThemes CurrentAppTheme
+        {
+            get { return _currentAppTheme; }
+            set
+            {
+                if (Set(ref _currentAppTheme, value))
+                {
+                    var args = new ThemeChangedEventArgs(CurrentSystemTheme, value);
+                    OnCurrentThemeChanged(args);
+                }
+            }
+        }
+
+        private bool _darkModeSupported;
+        /// <summary>
+        /// true if system-wide dark mode is supported, false otherwise.
+        /// </summary>
+        public bool DarkModeSupported
+        {
+            get { return _darkModeSupported; }
+            set { Set(ref _darkModeSupported, value); }
         }
 
         /// <summary>
         /// This is raised whenever the current theme changes.
         /// </summary>
-        public event EventHandler<WindowsThemes> CurrentThemeChanged;
+        public event EventHandler<ThemeChangedEventArgs> CurrentThemeChanged;
+
+        protected virtual void OnCurrentThemeChanged(ThemeChangedEventArgs e)
+        {
+            CurrentThemeChanged?.Invoke(this, e);
+        }
 
         public ThemesViewModel()
         {
@@ -51,11 +84,11 @@ namespace Charmy.ViewModels
                 {
                     if (SystemParameters.HighContrast)
                     {
-                        CurrentTheme = WindowsThemes.HighContrast;
+                        CurrentSystemTheme = WindowsThemes.HighContrast;
                     }
                     else
                     {
-                        CurrentTheme = GetWindowsTheme();
+                        CurrentSystemTheme = GetWindowsTheme();
                     }
                 }
             };
@@ -65,18 +98,20 @@ namespace Charmy.ViewModels
                 var watcher = new ManagementEventWatcher(query);
                 watcher.EventArrived += (sender, args) =>
                 {
-                    CurrentTheme = GetWindowsTheme();
+                    CurrentSystemTheme = GetWindowsTheme();
                 };
 
                 // Start listening for events
                 watcher.Start();
+                DarkModeSupported = true;
             }
             catch (Exception)
             {
                 // This can fail on older Windows versions
+                DarkModeSupported = false;
             }
 
-            CurrentTheme = GetWindowsTheme();
+            CurrentSystemTheme = GetWindowsTheme();
         }
 
         private WindowsThemes GetWindowsTheme()
@@ -94,5 +129,25 @@ namespace Charmy.ViewModels
                 return registryValue > 0 ? WindowsThemes.Light : WindowsThemes.Dark;
             }
         }
+    }
+
+    public class ThemeChangedEventArgs : EventArgs
+    {
+        /// <summary>
+        /// The selected system theme.
+        /// </summary>
+        public WindowsThemes NewSystemTheme { get; private set; }
+
+        /// <summary>
+        /// The selected in-app theme.
+        /// </summary>
+        public AppThemes NewAppTheme { get; private set; }
+
+        public ThemeChangedEventArgs(WindowsThemes sysTheme, AppThemes appTheme)
+        {
+            NewSystemTheme = sysTheme;
+            NewAppTheme = appTheme;
+        }
+
     }
 }

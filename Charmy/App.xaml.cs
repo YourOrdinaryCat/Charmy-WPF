@@ -26,23 +26,29 @@ namespace Charmy
                 key.SetValue(curAssembly.GetName().Name, curAssembly.Location);
             }
 
+            Resources.MergedDictionaries[0].Source =
+                new Uri($"../Themes/{TViewModel.CurrentAppTheme}/{TViewModel.CurrentSystemTheme}.xaml", UriKind.Relative);
+
+            Resources.MergedDictionaries[1].Source =
+                new Uri($"../Themes/{TViewModel.CurrentAppTheme}/Styles.xaml", UriKind.Relative);
+
             new Thread(() =>
             {
                 Thread.CurrentThread.IsBackground = true;
                 BeginTracking();
             }).Start();
 
-            Resources.MergedDictionaries[0].Source =
-                new Uri($"../Themes/{TViewModel.CurrentTheme}.xaml", UriKind.Relative);
-
             TViewModel.CurrentThemeChanged += ThemeChangedHandler;
             base.OnStartup(e);
         }
 
-        private void ThemeChangedHandler(object sender, Enums.WindowsThemes e)
+        private void ThemeChangedHandler(object sender, ThemeChangedEventArgs e)
         {
             Resources.MergedDictionaries[0].Source =
-                new Uri($"../Themes/{e}.xaml", UriKind.Relative);
+                new Uri($"../Themes/{e.NewAppTheme}/{e.NewSystemTheme}.xaml", UriKind.Relative);
+
+            Resources.MergedDictionaries[1].Source =
+                new Uri($"../Themes/{e.NewAppTheme}/Styles.xaml", UriKind.Relative);
         }
 
         [DllImport("HotCorners")]

@@ -5,8 +5,8 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Themes/Light.xaml" />
-                <ResourceDictionary Source="/Themes/MetroStyles.xaml" />
+                <ResourceDictionary Source="/Themes/Metro/Light.xaml" />
+                <ResourceDictionary Source="/Themes/Metro/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -1,4 +1,5 @@
-﻿using Hardcodet.Wpf.TaskbarNotification;
+﻿using Charmy.Views;
+using Hardcodet.Wpf.TaskbarNotification;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows;
@@ -11,13 +12,14 @@ namespace Charmy
 
         public EntryPoint()
         {
-            TaskbarIcon tbi = new TaskbarIcon();
+            TaskbarIcon tbi = new TaskbarIcon
+            {
+                Icon = new Icon(SystemIcons.Warning, 40, 40),
+                ToolTipText = "Settings",
 
-            tbi.Icon = new Icon(SystemIcons.Warning, 40, 40);
-            tbi.ToolTipText = "Settings";
-
-            tbi.LeftClickCommand = new RelayCommand(OpenSettings);
-            tbi.DoubleClickCommand = new RelayCommand(CeaseTracking);
+                LeftClickCommand = new RelayCommand(OpenSettings),
+                DoubleClickCommand = new RelayCommand(CeaseTracking)
+            };
 
             Hide();
         }

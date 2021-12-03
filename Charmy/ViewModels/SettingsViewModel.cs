@@ -1,22 +1,19 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace Charmy
+namespace Charmy.ViewModels
 {
     public class SettingsViewModel : ViewModel
     {
         [DllImport("HotCorners")]
-        private static extern ulong GetDelay();
+        private static extern uint GetDelay();
 
         [DllImport("HotCorners")]
-        private static extern void SetDelay(ulong delay);
+        private static extern void SetDelay(uint delay);
 
-        public ulong HotDelay
+        public uint HotDelay
         {
             get { return GetDelay(); }
-            set
-            {
-                SetDelay(value);
-            }
+            set { SetDelay(value); }
         }
     }
 }

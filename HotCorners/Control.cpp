@@ -43,12 +43,7 @@ extern "C" {
 	};
 
 	// How long cursor has to linger in the kHotCorner RECT to trigger input.
-	static ULONG kHotDelay = 000;
-
-	// You can exit the application using the hot key CTRL+ALT+C by default, if it
-	// interferes with some application you're using (e.g. a full screen game).
-	static const ULONG kHotKeyModifiers = MOD_CONTROL | MOD_ALT;
-	static const ULONG kHotKey = 'C';
+	static UINT kHotDelay = 0;
 
 	static HANDLE CornerThread = INVALID_HANDLE_VALUE;
 
@@ -92,7 +87,6 @@ extern "C" {
 
 		// Check co-ordinates.
 		if (IsPointWithinHotCorner(Point)) {
-#pragma warning(suppress : 4090)
 			if (SendInput(_countof(kCornerInput), kCornerInput, sizeof(INPUT)) != _countof(kCornerInput)) {
 				return 1;
 			}
@@ -181,8 +175,6 @@ extern "C" {
 		if (!(MouseHook = SetWindowsHookEx(WH_MOUSE_LL, MouseHookCallback, NULL, 0)))
 			return 1;
 
-		RegisterHotKey(NULL, 1, kHotKeyModifiers, kHotKey);
-
 		while (GetMessage(&Msg, NULL, 0, 0)) {
 			if (Msg.message == WM_HOTKEY) {
 				break;
@@ -201,12 +193,12 @@ extern "C" {
 		CloseHandle(Proc);
 	}
 
-	__declspec(dllexport) ULONG_PTR CALLBACK GetDelay()
+	__declspec(dllexport) UINT CALLBACK GetDelay()
 	{
 		return kHotDelay;
 	}
 
-	__declspec(dllexport) void CALLBACK SetDelay(ULONG_PTR delay)
+	__declspec(dllexport) void CALLBACK SetDelay(UINT delay)
 	{
 		kHotDelay = delay;
 	}

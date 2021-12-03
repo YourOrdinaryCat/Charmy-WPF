@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading;
 
-namespace Charmy
+namespace Charmy.ViewModels
 {
     /// <summary>
     /// Base ViewModel implementation, wraps a <typeparamref name="Type"/>

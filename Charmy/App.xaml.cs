@@ -1,4 +1,6 @@
-﻿using Microsoft.Win32;
+﻿using Charmy.ViewModels;
+using Microsoft.Win32;
+using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -12,6 +14,7 @@ namespace Charmy
     public partial class App : Application
     {
         public readonly static SettingsViewModel SViewModel = new SettingsViewModel();
+        public readonly static ThemesViewModel TViewModel = new ThemesViewModel();
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -29,7 +32,17 @@ namespace Charmy
                 BeginTracking();
             }).Start();
 
+            Resources.MergedDictionaries[0].Source =
+                new Uri($"../Themes/{TViewModel.CurrentTheme}.xaml", UriKind.Relative);
+
+            TViewModel.CurrentThemeChanged += ThemeChangedHandler;
             base.OnStartup(e);
+        }
+
+        private void ThemeChangedHandler(object sender, Enums.WindowsThemes e)
+        {
+            Resources.MergedDictionaries[0].Source =
+                new Uri($"../Themes/{e}.xaml", UriKind.Relative);
         }
 
         [DllImport("HotCorners")]

@@ -1,6 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using Charmy.ViewModels;
 using System.Windows;
-using System.Windows.Input;
 
 namespace Charmy
 {
@@ -17,10 +16,16 @@ namespace Charmy
             DataContext = ViewModel;
         }
 
-        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Regex regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
+            bool result = uint.TryParse(DelayBox.Text, out uint val);
+            if (!result)
+            {
+                MessageBox.Show("Not a valid value. The valid range is: " + uint.MinValue + "-" + uint.MaxValue);
+                return;
+            }
+
+            ViewModel.HotDelay = val;
         }
     }
 }

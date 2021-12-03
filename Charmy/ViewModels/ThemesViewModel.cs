@@ -53,6 +53,10 @@ namespace Charmy.ViewModels
                     {
                         CurrentTheme = WindowsThemes.HighContrast;
                     }
+                    else
+                    {
+                        CurrentTheme = GetWindowsTheme();
+                    }
                 }
             };
 

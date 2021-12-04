@@ -34,6 +34,12 @@ namespace Charmy.Views
             ViewModel.HotDelay = val;
         }
 
+        protected override void OnClosed(EventArgs e)
+        {
+            Properties.Settings.Default.Save();
+            base.OnClosed(e);
+        }
+
         #region TitleBar
         protected override void OnSourceInitialized(EventArgs e)
         {

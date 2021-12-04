@@ -6,13 +6,15 @@
     <!--#region Buttons-->
     <SolidColorBrush x:Key="ButtonBackgroundThemeBrush" Color="#B3B6B6B6" />
     <SolidColorBrush x:Key="ButtonBorderThemeBrush" Color="#33000000" />
+    <SolidColorBrush x:Key="ButtonForegroundThemeBrush" Color="#FF000000" />
     <SolidColorBrush x:Key="ButtonDisabledBackgroundThemeBrush" Color="#66CACACA" />
     <SolidColorBrush x:Key="ButtonDisabledBorderThemeBrush" Color="#1A000000" />
     <SolidColorBrush x:Key="ButtonDisabledForegroundThemeBrush" Color="#66000000" />
-    <SolidColorBrush x:Key="ButtonForegroundThemeBrush" Color="#FF000000" />
     <SolidColorBrush x:Key="ButtonPointerOverBackgroundThemeBrush" Color="#D1CDCDCD" />
+    <SolidColorBrush x:Key="ButtonPointerOverBorderThemeBrush" Color="#33000000" />
     <SolidColorBrush x:Key="ButtonPointerOverForegroundThemeBrush" Color="#FF000000" />
     <SolidColorBrush x:Key="ButtonPressedBackgroundThemeBrush" Color="#FF000000" />
+    <SolidColorBrush x:Key="ButtonPressedBorderThemeBrush" Color="#33000000" />
     <SolidColorBrush x:Key="ButtonPressedForegroundThemeBrush" Color="#FFFFFFFF" />
     <!--#endregion-->
 
@@ -20,15 +22,15 @@
     <SolidColorBrush x:Key="TextBoxBackgroundThemeBrush" Color="#FFC9C9C9" />
     <SolidColorBrush x:Key="TextBoxBorderThemeBrush" Color="#FFC9C9C9" />
     <SolidColorBrush x:Key="TextBoxForegroundThemeBrush" Color="#FF000000" />
+    <SolidColorBrush x:Key="TextBoxDisabledBackgroundThemeBrush" Color="#66CACACA" />
+    <SolidColorBrush x:Key="TextBoxDisabledBorderThemeBrush" Color="#26000000" />
+    <SolidColorBrush x:Key="TextBoxDisabledForegroundThemeBrush" Color="#FF666666" />
     <SolidColorBrush x:Key="TextBoxButtonPointerOverBackgroundThemeBrush" Color="#FFDEDEDE" />
     <SolidColorBrush x:Key="TextBoxButtonPointerOverBorderThemeBrush" Color="#FFC9C9C9" />
     <SolidColorBrush x:Key="TextBoxButtonPointerOverForegroundThemeBrush" Color="#FF000000" />
     <SolidColorBrush x:Key="TextBoxButtonPressedBackgroundThemeBrush" Color="#FFFFFFFF" />
     <SolidColorBrush x:Key="TextBoxButtonPressedBorderThemeBrush" Color="#0078D7" />
     <SolidColorBrush x:Key="TextBoxButtonPressedForegroundThemeBrush" Color="#FF000000" />
-    <SolidColorBrush x:Key="TextBoxDisabledBackgroundThemeBrush" Color="#66CACACA" />
-    <SolidColorBrush x:Key="TextBoxDisabledBorderThemeBrush" Color="#26000000" />
-    <SolidColorBrush x:Key="TextBoxDisabledForegroundThemeBrush" Color="#FF666666" />
     <SolidColorBrush x:Key="TextBoxPlaceholderTextThemeBrush" Color="#AB000000" />
     <!--#endregion-->
 

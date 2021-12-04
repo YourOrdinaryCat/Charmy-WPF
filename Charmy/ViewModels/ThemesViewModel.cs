@@ -77,22 +77,6 @@ namespace Charmy.ViewModels
                 RegistryKeyPath.Replace(@"\", @"\\"),
                 RegistryValueName);
 
-            // Watch high contrast
-            SystemParameters.StaticPropertyChanged += (sender, args) =>
-            {
-                if (args.PropertyName == nameof(SystemParameters.HighContrast))
-                {
-                    if (SystemParameters.HighContrast)
-                    {
-                        CurrentSystemTheme = WindowsThemes.HighContrast;
-                    }
-                    else
-                    {
-                        CurrentSystemTheme = GetWindowsTheme();
-                    }
-                }
-            };
-
             try
             {
                 var watcher = new ManagementEventWatcher(query);
@@ -111,11 +95,23 @@ namespace Charmy.ViewModels
                 DarkModeSupported = false;
             }
 
+            // Watch high contrast
+            SystemParameters.StaticPropertyChanged += (sender, args) =>
+            {
+                CurrentSystemTheme = GetWindowsTheme();
+            };
+
             CurrentSystemTheme = GetWindowsTheme();
         }
 
         private WindowsThemes GetWindowsTheme()
         {
+            if (SystemParameters.HighContrast)
+            {
+                Console.WriteLine("HC!!!");
+                return WindowsThemes.HighContrast;
+            }
+
             using (RegistryKey key = Registry.CurrentUser.OpenSubKey(RegistryKeyPath))
             {
                 object registryValueObject = key?.GetValue(RegistryValueName);
@@ -125,7 +121,6 @@ namespace Charmy.ViewModels
                 }
 
                 int registryValue = (int)registryValueObject;
-
                 return registryValue > 0 ? WindowsThemes.Light : WindowsThemes.Dark;
             }
         }

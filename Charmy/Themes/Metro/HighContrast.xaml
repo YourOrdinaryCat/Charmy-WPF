@@ -4,16 +4,34 @@
     <SolidColorBrush x:Key="WindowForegroundBrush" Color="{x:Static SystemColors.WindowTextColor}" />
 
     <!--#region Buttons-->
-    <SolidColorBrush x:Key="ButtonBackgroundThemeBrush" Color="Transparent" />
-    <SolidColorBrush x:Key="ButtonBorderThemeBrush" Color="#FFFFFFFF" />
-    <SolidColorBrush x:Key="ButtonDisabledBackgroundThemeBrush" Color="Transparent" />
-    <SolidColorBrush x:Key="ButtonDisabledBorderThemeBrush" Color="#66FFFFFF" />
-    <SolidColorBrush x:Key="ButtonDisabledForegroundThemeBrush" Color="#66FFFFFF" />
-    <SolidColorBrush x:Key="ButtonForegroundThemeBrush" Color="{x:Static SystemColors.WindowTextColor}" />
-    <SolidColorBrush x:Key="ButtonPointerOverBackgroundThemeBrush" Color="#21FFFFFF" />
-    <SolidColorBrush x:Key="ButtonPointerOverForegroundThemeBrush" Color="#FFFFFFFF" />
-    <SolidColorBrush x:Key="ButtonPressedBackgroundThemeBrush" Color="#FFFFFFFF" />
-    <SolidColorBrush x:Key="ButtonPressedForegroundThemeBrush" Color="#FF000000" />
+    <SolidColorBrush x:Key="ButtonBackgroundThemeBrush" Color="{x:Static SystemColors.ControlColor}" />
+    <SolidColorBrush x:Key="ButtonBorderThemeBrush" Color="{x:Static SystemColors.ControlColor}" />
+    <SolidColorBrush x:Key="ButtonForegroundThemeBrush" Color="{x:Static SystemColors.ControlTextColor}" />
+    <SolidColorBrush x:Key="ButtonDisabledBackgroundThemeBrush" Color="{x:Static SystemColors.ControlDarkDarkColor}" />
+    <SolidColorBrush x:Key="ButtonDisabledBorderThemeBrush" Color="{x:Static SystemColors.ControlDarkDarkColor}" />
+    <SolidColorBrush x:Key="ButtonDisabledForegroundThemeBrush" Color="{x:Static SystemColors.ControlTextColor}" />
+    <SolidColorBrush x:Key="ButtonPointerOverBackgroundThemeBrush" Color="{x:Static SystemColors.ControlLightColor}" />
+    <SolidColorBrush x:Key="ButtonPointerOverBorderThemeBrush" Color="{x:Static SystemColors.ControlLightColor}" />
+    <SolidColorBrush x:Key="ButtonPointerOverForegroundThemeBrush" Color="{x:Static SystemColors.ControlTextColor}" />
+    <SolidColorBrush x:Key="ButtonPressedBackgroundThemeBrush" Color="{x:Static SystemColors.ControlLightLightColor}" />
+    <SolidColorBrush x:Key="ButtonPressedBorderThemeBrush" Color="{x:Static SystemColors.ControlLightLightColor}" />
+    <SolidColorBrush x:Key="ButtonPressedForegroundThemeBrush" Color="{x:Static SystemColors.ControlTextColor}" />
+    <!--#endregion-->
+
+    <!--#region TextBoxes-->
+    <SolidColorBrush x:Key="TextBoxBackgroundThemeBrush" Color="{x:Static SystemColors.ControlColor}" />
+    <SolidColorBrush x:Key="TextBoxBorderThemeBrush" Color="{x:Static SystemColors.ControlColor}" />
+    <SolidColorBrush x:Key="TextBoxForegroundThemeBrush" Color="{x:Static SystemColors.ControlTextColor}" />
+    <SolidColorBrush x:Key="TextBoxDisabledBackgroundThemeBrush" Color="{x:Static SystemColors.ControlDarkDarkColor}" />
+    <SolidColorBrush x:Key="TextBoxDisabledBorderThemeBrush" Color="{x:Static SystemColors.ControlDarkDarkColor}" />
+    <SolidColorBrush x:Key="TextBoxDisabledForegroundThemeBrush" Color="{x:Static SystemColors.ControlTextColor}" />
+    <SolidColorBrush x:Key="TextBoxButtonPointerOverBackgroundThemeBrush" Color="{x:Static SystemColors.ControlLightColor}" />
+    <SolidColorBrush x:Key="TextBoxButtonPointerOverBorderThemeBrush" Color="{x:Static SystemColors.ControlLightColor}" />
+    <SolidColorBrush x:Key="TextBoxButtonPointerOverForegroundThemeBrush" Color="{x:Static SystemColors.ControlTextColor}" />
+    <SolidColorBrush x:Key="TextBoxButtonPressedBackgroundThemeBrush" Color="{x:Static SystemColors.ControlDarkColor}" />
+    <SolidColorBrush x:Key="TextBoxButtonPressedBorderThemeBrush" Color="{x:Static SystemColors.HighlightColor}" />
+    <SolidColorBrush x:Key="TextBoxButtonPressedForegroundThemeBrush" Color="{x:Static SystemColors.ControlTextColor}" />
+    <SolidColorBrush x:Key="TextBoxPlaceholderTextThemeBrush" Color="{x:Static SystemColors.ActiveCaptionTextColor}" />
     <!--#endregion-->
 
     <!--#region TitleBar buttons-->

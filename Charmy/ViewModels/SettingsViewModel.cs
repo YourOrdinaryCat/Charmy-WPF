@@ -13,7 +13,16 @@ namespace Charmy.ViewModels
         public uint HotDelay
         {
             get { return GetDelay(); }
-            set { SetDelay(value); }
+            set
+            {
+                SetDelay(value);
+                Properties.Settings.Default.HotDelay = value;
+            }
+        }
+
+        public SettingsViewModel()
+        {
+            HotDelay = Properties.Settings.Default.HotDelay;
         }
     }
 }
